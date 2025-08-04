@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Lớp 10A8 - THPT Nguyễn Hữu Cảnh</title>
+    <!-- Thư viện Tailwind CSS để tạo giao diện hiện đại và responsive -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Import font Inter để có giao diện đẹp mắt và dễ đọc -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+            color: #1f2937;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #e5e7eb;
+        }
+        ::-webkit-scrollbar-thumb {
+            background-color: #9ca3af;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background-color: #6b7280;
+        }
+        .container {
+            max-width: 1280px;
+        }
+        /* Style cho button */
+        .btn-primary {
+            @apply bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300 ease-in-out transform hover:scale-105;
+        }
+        /* Style cho các card */
+        .card {
+            @apply bg-white p-6 rounded-2xl shadow-lg border border-gray-200 transition-transform duration-300 hover:scale-105;
+        }
+        /* Style cho nút điều hướng */
+        .nav-link {
+            @apply text-gray-700 hover:text-blue-600 transition-colors duration-300 font-medium;
+        }
+        /* Style cho các tab trong phần tài liệu học tập */
+        .tab-button {
+            @apply py-2 px-4 rounded-lg font-medium text-gray-700 hover:bg-gray-200 transition-colors duration-300;
+        }
+        .tab-button.active {
+            @apply bg-blue-600 text-white;
+        }
+        /* Hiệu ứng mờ dần cho ảnh */
+        .image-gallery img {
+            transition: transform 0.3s ease-in-out;
+        }
+        .image-gallery img:hover {
+            transform: scale(1.1);
+        }
+        /* Modal */
+        .modal {
+            @apply fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50;
+        }
+        .modal-content {
+            @apply bg-white p-6 rounded-lg shadow-xl max-w-md w-full;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 flex flex-col min-h-screen">
+
+    <!-- Header & Navigation -->
+    <header class="bg-white shadow-md sticky top-0 z-40">
+        <div class="container mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center">
+            <div class="text-2xl font-bold text-blue-600 mb-2 md:mb-0">Lớp 10A8</div>
+            <nav class="flex space-x-4">
+                <a href="#about" class="nav-link">Giới thiệu</a>
+                <a href="#profiles" class="nav-link">Hồ sơ học sinh</a>
+                <a href="#announcements" class="nav-link">Thông báo</a>
+                <a href="#materials" class="nav-link">Tài liệu học tập</a>
+                <a href="#interaction" class="nav-link">Tương tác</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+        <!-- Banner/Hero Section -->
+        <section class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-16 md:py-24">
+            <div class="container mx-auto px-4 text-center">
+                <h1 class="text-3xl md:text-5xl font-extrabold mb-4 animate-fade-in">Lớp 10A8 - THPT Nguyễn Hữu Cảnh</h1>
+                <p class="text-lg md:text-xl font-light mb-6">Năm học 2025-2026</p>
+                <p class="text-2xl italic font-semibold">"Học hết mình, chơi nhiệt tình!"</p>
+            </div>
+        </section>
+
+        <!-- General Information Section -->
+        <section id="about" class="py-16">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold text-center mb-12 text-blue-600">Thông Tin Chung</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Card: Giáo viên chủ nhiệm -->
+                    <div class="card col-span-1 md:col-span-2 lg:col-span-1 text-center">
+                        <h3 class="text-xl font-semibold mb-2">Giáo viên chủ nhiệm</h3>
+                        <img src="https://placehold.co/150x150/e0f2fe/0369a1?text=GVCN" alt="Giáo viên chủ nhiệm" class="w-32 h-32 rounded-full mx-auto mb-4 border-4 border-blue-200">
+                        <p class="text-lg font-bold text-gray-800">Thầy Vũ Tiến Lực</p>
+                        <p class="text-gray-600 mt-2">"Chào mừng các em đến với ngôi nhà chung 10A8!"</p>
+                    </div>
+                    <!-- Card: Danh sách học sinh -->
+                    <div class="card col-span-1 lg:col-span-2">
+                        <h3 class="text-xl font-semibold mb-4">Danh Sách Học Sinh</h3>
+                        <div class="max-h-64 overflow-y-auto">
+                            <ul class="list-disc list-inside space-y-2 text-gray-700">
+                                <!-- Danh sách học sinh giả lập -->
+                                <li class="p-2 hover:bg-gray-50 rounded-lg transition-colors">1. Lê Văn An</li>
+                                <li class="p-2 hover:bg-gray-50 rounded-lg transition-colors">2. Trần Thị Bình</li>
+                                <li class="p-2 hover:bg-gray-50 rounded-lg transition-colors">3. Nguyễn Văn Cường</li>
+                                <li class="p-2 hover:bg-gray-50 rounded-lg transition-colors">4. Đỗ Thị Duyên</li>
+                                <li class="p-2 hover:bg-gray-50 rounded-lg transition-colors">5. Phạm Văn Giang</li>
+                                <li class="p-2 hover:bg-gray-50 rounded-lg transition-colors">6. Hoàng Thị Hạnh</li>
+                                <li class="p-2 hover:bg-gray-50 rounded-lg transition-colors">7. Nguyễn Văn Khanh</li>
+                                <li class="p-2 hover:bg-gray-50 rounded-lg transition-colors">8. Bùi Thị Lan</li>
+                                <li class="p-2 hover:bg-gray-50 rounded-lg transition-colors">9. Vũ Văn Minh</li>
+                                <li class="p-2 hover:bg-gray-50 rounded-lg transition-colors">10. Đinh Thị Ngọc</li>
+                                <!-- Thêm nhiều học sinh khác... -->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Student Profiles Section -->
+        <section id="profiles" class="bg-gray-50 py-16">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold text-center mb-12 text-blue-600">Hồ Sơ Học Sinh</h2>
+                <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Card: Hồ sơ Lê Văn An -->
+                    <div class="card text-center">
+                        <!-- Đường link trực tiếp từ Google Drive đã được sử dụng -->
+                        <img src="https://drive.usercontent.google.com/download?id=1JLnOb2RdKRzWKsEkHDE5Kv9KPmRmA1tK" alt="Ảnh học sinh Lê Văn An" class="w-32 h-32 rounded-full mx-auto mb-4 border-4 border-gray-200">
+                        <h3 class="text-xl font-semibold mb-2">Lê Văn An</h3>
+                        <p class="text-gray-600 text-sm">Học sinh lớp 10A8</p>
+                    </div>
+                    <!-- Thêm các thẻ hồ sơ học sinh khác tại đây -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Announcements Section -->
+        <section id="announcements" class="py-16">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold text-center mb-12 text-blue-600">Kế Hoạch & Thông Báo</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Card: Thời khóa biểu -->
+                    <div class="card">
+                        <h3 class="text-xl font-semibold mb-2">Thời Khóa Biểu</h3>
+                        <p class="text-gray-600">Cập nhật thời khóa biểu mới nhất cho tuần này.</p>
+                        <a href="https://docs.google.com/spreadsheets/d/1CHrQ5iKiOebTkLdy9veY_7NwIY6l5bvgDXRHBMPdrGY/edit?gid=550008932#gid=550008932" class="block mt-4 text-blue-600 hover:text-blue-800 font-medium">Xem chi tiết</a>
+                    </div>
+                    <!-- Card: Lịch thi -->
+                    <div class="card">
+                        <h3 class="text-xl font-semibold mb-2">Lịch Kiểm Tra, Thi</h3>
+                        <p class="text-gray-600">Thông báo lịch thi học kỳ 1 và các bài kiểm tra thường xuyên.</p>
+                        <a href="#" class="block mt-4 text-blue-600 hover:text-blue-800 font-medium">Xem chi tiết</a>
+                    </div>
+                    <!-- Card: Sự kiện -->
+                    <div class="card">
+                        <h3 class="text-xl font-semibold mb-2">Sự Kiện Lớp/Trường</h3>
+                        <p class="text-gray-600">Đăng ký tham gia hoạt động ngoại khóa cuối tháng.</p>
+                        <a href="#" class="block mt-4 text-blue-600 hover:text-blue-800 font-medium">Xem chi tiết</a>
+                    </div>
+                    <!-- Card: Thông báo khẩn -->
+                    <div class="card">
+                        <h3 class="text-xl font-semibold mb-2">Thông Báo Khẩn</h3>
+                        <p class="text-gray-600">Click để xem các thông báo đột xuất nếu có.</p>
+                        <button id="show-emergency-modal" class="block mt-4 text-red-600 font-medium hover:text-red-800">Xem thông báo</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Study Materials Section -->
+        <section id="materials" class="bg-gray-50 py-16">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold text-center mb-8 text-blue-600">Tài Liệu Học Tập</h2>
+                <div class="flex justify-center mb-8 space-x-4">
+                    <button class="tab-button active" data-tab="lectures">Bài Giảng</button>
+                    <button class="tab-button" data-tab="exercises">Bài Tập</button>
+                    <button class="tab-button" data-tab="creative-corner">Góc Sáng Tạo</button>
+                    <button class="tab-button" data-tab="gallery">Thư Viện Ảnh</button>
+                </div>
+
+                <div id="tab-content">
+                    <!-- Tab: Bài Giảng -->
+                    <div id="lectures" class="tab-pane active">
+                        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            <!-- Card: Bài giảng giả lập -->
+                            <div class="card flex items-center space-x-4">
+                                <span class="text-4xl text-blue-500">&#x1F4DC;</span>
+                                <div>
+                                    <h4 class="font-semibold text-lg">Bài Giảng Toán - Đại Số</h4>
+                                    <p class="text-sm text-gray-600">Chương 1: Hàm số bậc nhất.</p>
+                                    <a href="#" class="text-blue-600 hover:underline">Tải xuống</a>
+                                </div>
+                            </div>
+                            <div class="card flex items-center space-x-4">
+                                <span class="text-4xl text-green-500">&#x1F4BB;</span>
+                                <div>
+                                    <h4 class="font-semibold text-lg">Bài Giảng Tin Học</h4>
+                                    <p class="text-sm text-gray-600">Chương trình Python cơ bản.</p>
+                                    <a href="#" class="text-blue-600 hover:underline">Tải xuống</a>
+                                </div>
+                            </div>
+                            <div class="card flex items-center space-x-4">
+                                <span class="text-4xl text-red-500">&#x1F5C3;</span>
+                                <div>
+                                    <h4 class="font-semibold text-lg">Bài Giảng Vật Lý</h4>
+                                    <p class="text-sm text-gray-600">Chủ đề: Động học chất điểm.</p>
+                                    <a href="#" class="text-blue-600 hover:underline">Tải xuống</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tab: Bài Tập -->
+                    <div id="exercises" class="tab-pane hidden">
+                        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            <!-- Card: Bài tập giả lập -->
+                            <div class="card flex items-center space-x-4">
+                                <span class="text-4xl text-purple-500">&#x1F5AE;</span>
+                                <div>
+                                    <h4 class="font-semibold text-lg">Bài Tập Hóa Học</h4>
+                                    <p class="text-sm text-gray-600">Chương 2: Cấu tạo nguyên tử.</p>
+                                    <a href="#" class="text-blue-600 hover:underline">Tải xuống</a>
+                                </div>
+                            </div>
+                            <div class="card flex items-center space-x-4">
+                                <span class="text-4xl text-yellow-500">&#x1F4DD;</span>
+                                <div>
+                                    <h4 class="font-semibold text-lg">Bài Tập Ngữ Văn</h4>
+                                    <p class="text-sm text-gray-600">Phân tích tác phẩm "Vợ nhặt".</p>
+                                    <a href="#" class="text-blue-600 hover:underline">Tải xuống</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tab: Góc Sáng Tạo -->
+                    <div id="creative-corner" class="tab-pane hidden">
+                        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            <!-- Card: Bài viết giả lập -->
+                            <div class="card">
+                                <h4 class="font-semibold text-lg mb-2">Bài văn: "Tuổi trẻ và ước mơ"</h4>
+                                <p class="text-sm text-gray-600 italic">Tác giả: Lê Văn An</p>
+                                <p class="mt-2 text-gray-700 line-clamp-3">Đoạn trích: "Tuổi trẻ là những chuyến đi, là những ước mơ lớn lao, là những thử thách không ngừng nghỉ..."</p>
+                                <a href="#" class="text-blue-600 hover:underline mt-2 inline-block">Đọc tiếp</a>
+                            </div>
+                            <div class="card">
+                                <h4 class="font-semibold text-lg mb-2">Tranh vẽ: "Bình minh trên biển"</h4>
+                                <p class="text-sm text-gray-600 italic">Tác giả: Trần Thị Bình</p>
+                                <p class="mt-2 text-gray-700">Một bức tranh màu nước tuyệt đẹp.</p>
+                                <a href="#" class="text-blue-600 hover:underline mt-2 inline-block">Xem chi tiết</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tab: Thư Viện Ảnh -->
+                    <div id="gallery" class="tab-pane hidden">
+                        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 image-gallery">
+                            <!-- Hình ảnh giả lập -->
+                            <div class="relative rounded-lg overflow-hidden shadow-md">
+                                <img src="https://placehold.co/400x300/a5b4fc/4338ca?text=Ảnh+lớp+1" alt="Ảnh lớp 1" class="w-full h-auto object-cover">
+                            </div>
+                            <div class="relative rounded-lg overflow-hidden shadow-md">
+                                <img src="https://placehold.co/400x300/fecaca/991b1b?text=Ảnh+lớp+2" alt="Ảnh lớp 2" class="w-full h-auto object-cover">
+                            </div>
+                            <div class="relative rounded-lg overflow-hidden shadow-md">
+                                <img src="https://placehold.co/400x300/c7d2fe/3730a3?text=Ảnh+lớp+3" alt="Ảnh lớp 3" class="w-full h-auto object-cover">
+                            </div>
+                            <div class="relative rounded-lg overflow-hidden shadow-md">
+                                <img src="https://placehold.co/400x300/dbeafe/1e40af?text=Ảnh+lớp+4" alt="Ảnh lớp 4" class="w-full h-auto object-cover">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interaction Section -->
+        <section id="interaction" class="py-16">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold text-center mb-8 text-blue-600">Kênh Tương Tác</h2>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- Form: Diễn đàn/Liên hệ -->
+                    <div class="card">
+                        <h3 class="text-xl font-semibold mb-4">Gửi tin nhắn cho giáo viên</h3>
+                        <form class="space-y-4">
+                            <div>
+                                <label for="name" class="block text-sm font-medium text-gray-700">Họ và tên</label>
+                                <input type="text" id="name" name="name" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500" placeholder="Nguyễn Văn A">
+                            </div>
+                            <div>
+                                <label for="message" class="block text-sm font-medium text-gray-700">Nội dung</label>
+                                <textarea id="message" name="message" rows="4" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500" placeholder="Viết tin nhắn của bạn..."></textarea>
+                            </div>
+                            <button type="submit" class="btn-primary w-full">Gửi</button>
+                        </form>
+                    </div>
+                    <!-- Card: Liên hệ và mạng xã hội -->
+                    <div class="card">
+                        <h3 class="text-xl font-semibold mb-4">Thông tin liên hệ</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-center space-x-2">
+                                <span class="text-blue-600 text-2xl">&#x1F4DE;</span>
+                                <p class="font-medium">SĐT Giáo viên: 0912-345-678</p>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <span class="text-blue-600 text-2xl">&#x1F4E7;</span>
+                                <p class="font-medium">Email: gvcn10a8@gmail.com</p>
+                            </div>
+                            <h4 class="font-semibold mt-6 mb-2">Mạng xã hội</h4>
+                            <div class="flex space-x-4">
+                                <a href="#" class="text-gray-600 hover:text-blue-600 text-3xl transition-colors">&#x1F4F1;</a> <!-- Placeholder for Zalo -->
+                                <a href="#" class="text-gray-600 hover:text-blue-600 text-3xl transition-colors">&#x1F4F0;</a> <!-- Placeholder for Facebook Group -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8 mt-16">
+        <div class="container mx-auto px-4 text-center">
+            <p>&copy; 2025 Lớp 10A8 - THPT Nguyễn Hữu Cảnh. Bảo lưu mọi quyền.</p>
+            <p class="mt-2">Website được xây dựng bởi Gemini AI.</p>
+        </div>
+    </footer>
+
+    <!-- Modal for Emergency Announcement -->
+    <div id="emergency-modal" class="modal hidden">
+        <div class="modal-content">
+            <div class="flex justify-between items-center pb-3">
+                <h3 class="text-2xl font-bold text-red-600">Thông Báo Khẩn!</h3>
+                <button id="close-emergency-modal" class="text-gray-500 hover:text-gray-800 text-2xl font-bold">&times;</button>
+            </div>
+            <div class="mt-4">
+                <p class="text-gray-800">
+                    Kính gửi phụ huynh và các em học sinh,<br><br>
+                    Ngày mai, Thứ Sáu, ngày 2 tháng 8 năm 2025, tất cả các lớp sẽ nghỉ học do thời tiết xấu.
+                    Các em ở nhà ôn bài và giữ an toàn.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript for interactivity -->
+    <script>
+        // JavaScript để xử lý các chức năng tương tác trên trang
+        document.addEventListener('DOMContentLoaded', () => {
+            // Xử lý cuộn mượt khi click vào các link trên menu
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            // Xử lý chuyển đổi giữa các tab trong phần tài liệu học tập
+            const tabButtons = document.querySelectorAll('.tab-button');
+            const tabPanes = document.querySelectorAll('.tab-pane');
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Loại bỏ trạng thái 'active' của tất cả các nút và ẩn tất cả các tab
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    tabPanes.forEach(pane => pane.classList.add('hidden'));
+
+                    // Thêm trạng thái 'active' cho nút được click và hiển thị tab tương ứng
+                    button.classList.add('active');
+                    const targetTab = document.getElementById(button.dataset.tab);
+                    if (targetTab) {
+                        targetTab.classList.remove('hidden');
+                    }
+                });
+            });
+
+            // Xử lý hiển thị và ẩn modal thông báo khẩn
+            const emergencyModal = document.getElementById('emergency-modal');
+            const showModalBtn = document.getElementById('show-emergency-modal');
+            const closeModalBtn = document.getElementById('close-emergency-modal');
+
+            if (showModalBtn) {
+                showModalBtn.addEventListener('click', () => {
+                    emergencyModal.classList.remove('hidden');
+                });
+            }
+
+            if (closeModalBtn) {
+                closeModalBtn.addEventListener('click', () => {
+                    emergencyModal.classList.add('hidden');
+                });
+            }
+            
+            // Đóng modal khi click ra ngoài
+            if (emergencyModal) {
+                emergencyModal.addEventListener('click', (e) => {
+                    if (e.target === emergencyModal) {
+                        emergencyModal.classList.add('hidden');
+                    }
+                });
+            }
+        });
+    </script>
+
+</body>
+</html>
