@@ -1,98 +1,36 @@
-// ==== 1. Logic chuyển tab ====
-function showTab(tab) {
-    document.getElementById('quizTab').style.display = tab==='quiz'?'':'none';
-    document.getElementById('flashcardTab').style.display = tab==='flashcard'?'':'none';
-}
-showTab('quiz'); // Mặc định
-
-// ==== 2. Bộ câu hỏi Quiz mẫu (thay nội dung thoải mái) ====
-const quizQuestions = [
-    {
-        question: "Số nguyên tố nhỏ nhất là?",
-        options: ["1", "2", "3", "5"],
-        answer: 1
-    },
-    {
-        question: "Đạo hàm của hàm số $f(x) = x^2$ là?",
-        options: ["$2x$", "$x$", "$x^2$", "$2$"],
-        answer: 0
-    },
-    {
-        question: "Ký hiệu của tập hợp số thực?",
-        options: ["$\\mathbb{R}$", "$\\mathbb{Q}$", "$\\mathbb{N}$", "$\\mathbb{C}$"],
-        answer: 0
-    }
-];
-
-// ==== 3. Hiển thị quiz ====
-function renderQuiz() {
-    let quizArea = document.getElementById('quizArea');
-    let html = '';
-    quizQuestions.forEach((q, idx) => {
-        html += `<div class="quiz-q">
-            <div><b>Câu ${idx+1}:</b> <span class="math">${q.question}</span></div>`;
+function renderSlide(idx) {
+    let s = slides[idx];
+    let html = `<h2>${s.title}</h2><div class="slide-content">${s.content||''}</div>`;
+    // Nếu là slide quiz thì nhúng quiz vào luôn
+    if (s.type==='quiz' && typeof s.quizIdx==='number' && quizQuestions[s.quizIdx]) {
+        let q = quizQuestions[s.quizIdx];
+        html += `<div class="slide-quiz"><b>Câu hỏi:</b> <span class="math">${q.question}</span><br>`;
         q.options.forEach((opt, oid) => {
-            html += `<label>
-                <input type="radio" name="q${idx}" value="${oid}">
-                <span class="math">${opt}</span>
-            </label>`;
+            html += `<label><input type="radio" name="qSlide" value="${oid}"> <span class="math">${opt}</span></label><br>`;
         });
-        html += `</div>`;
-    });
-    quizArea.innerHTML = html;
-
-    if(window.MathJax) MathJax.typesetPromise();
-    document.getElementById('quizResult').textContent = '';
-}
-renderQuiz();
-
-// ==== 4. Nộp bài và chấm điểm quiz ====
-document.getElementById('submitQuizBtn').onclick = function() {
-    let score = 0;
-    quizQuestions.forEach((q, idx) => {
-        let checked = document.querySelector(`input[name="q${idx}"]:checked`);
-        if (checked && Number(checked.value) === q.answer) score++;
-    });
-    let result = `Bạn đúng ${score}/${quizQuestions.length} câu (${Math.round(score/quizQuestions.length*100)}%)`;
-    document.getElementById('quizResult').textContent = result;
-};
-
-// ==== 5. Bộ flashcard mẫu ====
-const flashcards = [
-    { front: "Định nghĩa đạo hàm", back: "$$f'(x)=\\lim_{h\\to 0} \\frac{f(x+h)-f(x)}{h}$$" },
-    { front: "Hệ thức Vi-et cho $ax^2+bx+c=0$ ($a\\ne0$)", back: "$$\\begin{aligned} x_1+x_2&=-\\frac{b}{a} \\\\ x_1x_2&=\\frac{c}{a} \\end{aligned}$$" },
-    { front: "Công thức lượng giác: $\\sin^2 x + \\cos^2 x = $", back: "$$1$$" }
-];
-let flashIdx = 0, isFlipped = false;
-
-// ==== 6. Hiển thị flashcard ====
-function showFlashcard(idx) {
-    let f = flashcards[idx];
-    document.getElementById('flashcardFront').innerHTML = f.front;
-    document.getElementById('flashcardBack').innerHTML = f.back;
-    document.getElementById('flashcard').classList.toggle('flipped', isFlipped);
+        html += `<button onclick="gradeSlideQuiz(${s.quizIdx})" class="btn btn-sm">Nộp câu này</button>`;
+        html += `<div id="slideQuizResult"></div></div>`;
+    }
+    document.getElementById('slideArea').innerHTML = html;
+    document.getElementById('slideIndex').textContent = `Trang ${idx+1}/${slides.length}`;
     if(window.MathJax) MathJax.typesetPromise();
 }
-showFlashcard(flashIdx);
 
-// ==== 7. Điều khiển flashcard ====
-function flipFlashcard() {
-    isFlipped = !isFlipped;
-    document.getElementById('flashcard').classList.toggle('flipped', isFlipped);
+function nextSlide() {
+    if(currentSlide < slides.length-1) currentSlide++;
+    renderSlide(currentSlide);
 }
-function nextFlashcard() {
-    flashIdx = (flashIdx+1)%flashcards.length;
-    isFlipped = false;
-    showFlashcard(flashIdx);
+function prevSlide() {
+    if(currentSlide > 0) currentSlide--;
+    renderSlide(currentSlide);
 }
-function prevFlashcard() {
-    flashIdx = (flashIdx-1+flashcards.length)%flashcards.length;
-    isFlipped = false;
-    showFlashcard(flashIdx);
+function gradeSlideQuiz(idx) {
+    let q = quizQuestions[idx];
+    let checked = document.querySelector('input[name="qSlide"]:checked');
+    let res = '';
+    if (checked) {
+        if (Number(checked.value)===q.answer) res = `<span style="color:green;">✔ Đúng!</span>`;
+        else res = `<span style="color:red;">✘ Sai!</span>`;
+    } else res = 'Chọn một đáp án!';
+    document.getElementById('slideQuizResult').innerHTML = res;
 }
-
-window.flipFlashcard = flipFlashcard;
-window.nextFlashcard = nextFlashcard;
-window.prevFlashcard = prevFlashcard;
-window.showTab = showTab;
-
