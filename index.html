@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Quiz Trắc nghiệm & Flashcard Toán</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- SheetJS nếu sau này muốn import/export -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script> -->
+</head>
+<body>
+    <header>
+        <h1>Toán học vui - Quiz & Flashcard</h1>
+        <nav>
+            <button onclick="showTab('quiz')">Trắc nghiệm</button>
+            <button onclick="showTab('flashcard')">Flashcard</button>
+        </nav>
+    </header>
+    <main>
+        <!-- Tab Quiz -->
+        <section id="quizTab" class="tab">
+            <h2>Quiz Trắc nghiệm</h2>
+            <div id="quizArea"></div>
+            <button id="submitQuizBtn" class="btn">Nộp bài</button>
+            <div id="quizResult"></div>
+        </section>
+        <!-- Tab Flashcard -->
+        <section id="flashcardTab" class="tab" style="display:none;">
+            <h2>Flashcard Công Thức/Định Nghĩa</h2>
+            <div id="flashcardArea">
+                <div class="flashcard" id="flashcard" onclick="flipFlashcard()">
+                    <div class="front" id="flashcardFront"></div>
+                    <div class="back" id="flashcardBack"></div>
+                </div>
+            </div>
+            <div class="flashcard-controls">
+                <button onclick="prevFlashcard()" class="btn btn-sm">Trước</button>
+                <button onclick="flipFlashcard()" class="btn btn-sm">Lật thẻ</button>
+                <button onclick="nextFlashcard()" class="btn btn-sm">Tiếp</button>
+            </div>
+        </section>
+    </main>
+    <script src="app.js"></script>
+</body>
+</html>

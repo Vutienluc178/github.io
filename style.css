@@ -1,0 +1,121 @@
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #f7f9fb;
+    color: #222;
+    margin: 0;
+    padding: 0;
+}
+header {
+    background: #3973e7;
+    color: #fff;
+    padding: 1rem 2rem;
+    text-align: center;
+}
+header nav {
+    margin-top: 1rem;
+}
+header button {
+    background: #fff;
+    color: #3973e7;
+    border: none;
+    border-radius: 5px;
+    margin: 0 .5rem;
+    padding: .5rem 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background .15s;
+}
+header button:hover {
+    background: #dbeafe;
+}
+main {
+    max-width: 540px;
+    margin: 2rem auto;
+    background: #fff;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 2px 12px #0001;
+}
+.tab h2 {
+    color: #3973e7;
+    margin-top: 0;
+}
+.btn {
+    background: #3973e7;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    margin: 1rem 0 .5rem 0;
+    padding: .6rem 1.2rem;
+    font-size: 1.06rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background .16s;
+}
+.btn:hover {
+    background: #1746b3;
+}
+.btn-sm {
+    font-size: .98rem;
+    padding: .4rem 1rem;
+    margin: .3rem .5rem 0 0;
+}
+
+#quizArea label {
+    display: block;
+    margin: .3rem 0;
+    cursor: pointer;
+}
+
+#quizResult {
+    margin-top: 1.1rem;
+    font-size: 1.12rem;
+    font-weight: 600;
+}
+
+.flashcard {
+    width: 320px; height: 180px;
+    background: #e5e9f5;
+    border-radius: 16px;
+    margin: 1rem auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    perspective: 800px;
+    box-shadow: 0 4px 18px #0001;
+    position: relative;
+    cursor: pointer;
+    transition: box-shadow .18s;
+}
+.flashcard .front, .flashcard .back {
+    position: absolute;
+    width: 95%; height: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    font-weight: 500;
+    backface-visibility: hidden;
+    text-align: center;
+    padding: 1.1rem;
+    transition: transform .5s;
+}
+.flashcard .front {
+    background: #fff;
+    color: #3973e7;
+}
+.flashcard .back {
+    background: #3973e7;
+    color: #fff;
+    transform: rotateY(180deg);
+}
+.flashcard.flipped .front { transform: rotateY(180deg);}
+.flashcard.flipped .back  { transform: rotateY(0);}
+.flashcard-controls {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+@media (max-width:600px){
+    main { padding:1rem;}
+    .flashcard { width:98vw; max-width:98vw;}
+}
