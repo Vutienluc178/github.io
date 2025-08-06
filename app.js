@@ -40,6 +40,7 @@ function renderQuiz() {
         html += `</div>`;
     });
     quizArea.innerHTML = html;
+
     if(window.MathJax) MathJax.typesetPromise();
     document.getElementById('quizResult').textContent = '';
 }
@@ -94,3 +95,4 @@ window.flipFlashcard = flipFlashcard;
 window.nextFlashcard = nextFlashcard;
 window.prevFlashcard = prevFlashcard;
 window.showTab = showTab;
+
