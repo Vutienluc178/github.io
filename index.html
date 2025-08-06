@@ -1,15 +1,35 @@
-<main>
-    <section id="slideShowTab">
-        <div id="slideArea">
-            <!-- Slide nội dung sẽ nhét vào đây -->
-        </div>
-        <div class="slide-controls">
-            <button onclick="prevSlide()" class="btn btn-sm">◀ Trước</button>
-            <button onclick="nextSlide()" class="btn btn-sm">Tiếp ▶</button>
-            <span id="slideIndex" style="margin:0 1rem;"></span>
-        </div>
-    </section>
-    <section id="quizTab" class="tab" style="display:none;">
-        <!-- ... Giữ lại quiz/flashcard nếu cần ... -->
-    </section>
-</main>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Bài giảng trình chiếu Toán học</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- MathJax để hiển thị công thức Toán -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <!-- SheetJS để import file Excel -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Bài giảng trình chiếu Toán học</h1>
+    </header>
+    <main>
+        <section id="slideShowTab">
+            <div style="text-align:right">
+                <button class="btn btn-sm" onclick="document.getElementById('slideImport').click()">📥 Import bài giảng (Excel)</button>
+                <input type="file" id="slideImport" accept=".xlsx,.xls" style="display:none">
+            </div>
+            <div id="slideArea">
+                <!-- Nội dung slide sẽ hiển thị tại đây -->
+            </div>
+            <div class="slide-controls">
+                <button onclick="prevSlide()" class="btn btn-sm">◀ Trước</button>
+                <button onclick="nextSlide()" class="btn btn-sm">Tiếp ▶</button>
+                <span id="slideIndex" style="margin:0 1rem;"></span>
+            </div>
+        </section>
+    </main>
+    <script src="app.js"></script>
+</body>
+</html>
